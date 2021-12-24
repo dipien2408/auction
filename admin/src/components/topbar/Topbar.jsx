@@ -2,9 +2,11 @@ import React from 'react'
 import "./topbar.css"
 import { NotificationsNone, Language, Logout } from '@mui/icons-material';
 import { logout } from "../../redux/apiCalls";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 export default function Topbar() {
+	const user = useSelector((state) => state.user.currentUser); 
 	const dispatch = useDispatch();
 	const handleClick = () => {
 		logout(dispatch);
@@ -13,7 +15,9 @@ export default function Topbar() {
         <div className="topbar">
             <div className="topbarWrapper">
                 <div className="topLeft">
-                    <span className="logo">Ec-Admin</span>
+                    <Link className="link" to="/">
+                        <span className="logo">Ec-Admin</span>
+                    </Link>
                 </div>
                 <div className="topRight">
                     <div className="topbarIconContainer">
@@ -27,7 +31,7 @@ export default function Topbar() {
                     <div className="topbarIconContainer">
                         <Logout onClick={handleClick}/>
                     </div>
-                    <img src="https://firebasestorage.googleapis.com/v0/b/ec-pj-f6c33.appspot.com/o/ava1.jpg?alt=media&token=https://firebasestorage.googleapis.com/v0/b/ec-pj-f6c33.appspot.com/o/ava1.jpg?alt=media&token=ce2b2793-0e73-4179-afd9-a94c915b01e2" alt="" className="topAvatar" />
+                    <img src={user.img} alt="" className="topAvatar" />
                 </div>
             </div>
         </div>

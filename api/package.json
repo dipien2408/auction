@@ -17,6 +17,8 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.0.13",
     "nodemon": "^2.0.15",
+    "path": "^0.12.7",
+    "react-countdown": "^2.3.2",
     "stripe": "^8.190.0"
   }
 }

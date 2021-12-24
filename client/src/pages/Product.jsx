@@ -52,6 +52,7 @@ const Winner = styled.span`
   font-size: 20px;
   font-weight: 200;
   margin-bottom: 10px;
+  position: relative;
 `;
 
 const NotWinner = styled.span`
@@ -67,9 +68,7 @@ const OrderNoti = styled.span`
 const BidAndCheckout = styled.div`
   flex: 1;
   display: flex;
-  align-items: center;
   flex-direction: column;
-  position: absolute;
 `;
 
 const Button = styled.button`
@@ -124,7 +123,7 @@ const Product = () => {
     setStripeToken(token);
   };
 
-  //payment
+  //payment for stripe
   useEffect(() => {
     const makeRequest = async () => {
       try {
@@ -152,9 +151,8 @@ const Product = () => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [stripeToken, user, product]);
 
-  const handlePayPal = (id, boolean) => {
+  const handlePayPal = (id) => {
     setOrderId(id);
-    setIsPaid(boolean);
   }
 
   //fetch product and setSate
@@ -163,8 +161,10 @@ const Product = () => {
       try {
         const res = await publicRequest.get("/products/find/" + id);
         setProduct(res.data);
+        setPrice(res.data.price);
         setIsEnd(res.data.end);
         setTime(res.data.time);
+        setIsPaid(res.data.paid);
         setIsWinner(res.data.curWinner === user.username);
       } catch {}
     };
@@ -178,6 +178,7 @@ const Product = () => {
         const res = await publicRequest.get("/products/find/" + id);
         setPrice(res.data.price);
         setIsEnd(res.data.end);
+        setIsPaid(res.data.paid);
         if(res.data.curWinner !== user.username) {
           setIsWinner(false);
         } else {
@@ -201,8 +202,8 @@ const Product = () => {
         })
       } catch {}
     };
-    setEnd();
-  }, [isEnd, id]);
+    isEnd && setEnd();
+  }, [isEnd, id]); 
 
   //bid button
   const handleClick = async () => {
@@ -259,9 +260,9 @@ const Product = () => {
                               stripeKey={KEY}
                               style={{marginBottom:"10px"}}/>
                             <PayPal 
+                              handlePayPal={handlePayPal}
                               description={product.title}
                               amount={price}
-                              handlePayPal={handlePayPal} 
                               userId= {user._id}
                               productId={product._id}
                               key={product._id}/></>) 

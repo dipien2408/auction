@@ -11,7 +11,7 @@ const Container = styled.div`
       rgba(255, 255, 255, 0.5),
       rgba(255, 255, 255, 0.5)
     ),
-    url("https://images.pexels.com/photos/6984650/pexels-photo-6984650.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940")
+    url("https://firebasestorage.googleapis.com/v0/b/ec-pj-f6c33.appspot.com/o/auction-login-register.gif?alt=media&token=https://firebasestorage.googleapis.com/v0/b/ec-pj-f6c33.appspot.com/o/auction-login-register.gif?alt=media&token=fa1e02d8-28d6-4930-a889-a2a1624eca22")
       center;
   background-size: cover;
   display: flex;
@@ -56,7 +56,7 @@ const Button = styled.button`
   }
 `;
 
-const LinkItem = styled.a`
+const LinkItem = styled.div`
   margin: 5px 0px;
   font-size: 12px;
   text-decoration: underline;

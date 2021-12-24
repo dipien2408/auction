@@ -83,7 +83,7 @@ router.get("/", async (req, res) => {
 });
 
 //bid
-router.put("/bid/:id", async (req, res) => {
+router.put("/bid/:id", verifyTokenAndAuthorization, async (req, res) => {
   try {
     const updatedProduct = await Product.findByIdAndUpdate(
       req.params.id,
@@ -106,6 +106,22 @@ router.put("/end/:id", async (req, res) => {
       req.params.id,
       {
         end: req.body.end,        
+      },
+      { new: true }
+    );
+    res.status(200).json(updatedProduct);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+//set paid
+router.put("/paid/:id", async (req, res) => {
+  try {
+    const updatedProduct = await Product.findByIdAndUpdate(
+      req.params.id,
+      {
+        paid: req.body.paid,        
       },
       { new: true }
     );

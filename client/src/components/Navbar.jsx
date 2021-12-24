@@ -38,6 +38,7 @@ const Input = styled.input`
   &:focus {
     outline: none;
   }
+  width: 100%;
 `;
 
 const Center = styled.div`
@@ -112,7 +113,9 @@ const Navbar = () => {
                   </Badge>
                 </MenuItem>
               </Link>
-              <MenuItem><UserImg src={user.img}/></MenuItem>
+              <Link to="/setting">
+                <MenuItem><UserImg src={user.img}/></MenuItem>
+              </Link>
               <MenuItem onClick={handleLogout}>LOGOUT</MenuItem>
             </>) : (<>
               <Link className="link" to="/register">

@@ -31,6 +31,9 @@ export default function NewProduct() {
 
   const handleClick = (e) => {
     e.preventDefault();
+    if(!file){
+      return alert("Missing information!");
+    }
     const fileName = new Date().getTime() + file.name;
     const storage = getStorage(app);
     const storageRef = ref(storage, fileName);
@@ -87,7 +90,7 @@ export default function NewProduct() {
         </div>
         <div className="addProductItem">
           <label>Description</label>
-          <input name="description" type="text" placeholder="description..." onChange={handleChange}/>
+          <input name="desc" type="text" placeholder="description..." onChange={handleChange}/>
         </div>
         <div className="addProductItem">
           <label>Price</label>

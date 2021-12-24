@@ -46,13 +46,13 @@ export const productSlice = createSlice({
       state.isFetching = false;
       state.products[
         state.products.findIndex((item) => item._id === action.payload.id)
-      ] = action.payload.product;
+      ] = action.payload.newProduct;
     },
     updateProductFailure: (state) => {
       state.isFetching = false;
       state.error = true;
     },
-    //UPDATE
+    //ADD
     addProductStart: (state) => {
       state.isFetching = true;
       state.error = false;

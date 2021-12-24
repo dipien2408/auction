@@ -3,6 +3,7 @@ import ProductList from "./pages/ProductList";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Cart from "./pages/Cart";
+import Setting from "./pages/Setting";
 import {
   BrowserRouter as Router,
   Routes,
@@ -25,11 +26,13 @@ const App = () => {
           <>
           <Route path="/login" element={<Navigate to="/"/>}/>
           <Route path="/register" element={<Navigate to="/"/>}/>
+          <Route path="/setting" element={<Setting />}/>
           </>
-        ): (
+        ) : (
           <>
           <Route path="/login" element={<Login />}/>
           <Route path="/register" element={<Register />}/>
+          <Route path="/setting" element={<Navigate to="/login"/>}/>
           </>
         )}
         

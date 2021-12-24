@@ -15,7 +15,10 @@ export default function ProductList() {
   }, [dispatch]);
 
   const handleDelete = (id) => {
-    deleteProduct(id, dispatch);
+    const confirm = window.confirm("Are you sure you want to delete this product?");
+    if(confirm) {
+      deleteProduct(id, dispatch);
+    }
   };
 
   const columns = [
@@ -23,7 +26,7 @@ export default function ProductList() {
     {
       field: "product",
       headerName: "Product",
-      width: 200,
+      width: 220,
       renderCell: (params) => {
         return (
           <div className="productListItem">
@@ -34,12 +37,9 @@ export default function ProductList() {
       },
     },
     { field: "end", headerName: "End", width: 120 },
-    {
-      field: "price",
-      headerName: "Price",
-      width: 160,
-    },
-    
+    { field: "price", headerName: "Price", width: 120 },
+    { field: "curWinner", headerName: "Current Winner", width: 180 },
+    { field: "paid", headerName: "Paid", width: 120 },
     {
       field: "action",
       headerName: "Action",
