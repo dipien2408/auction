@@ -77,14 +77,14 @@ const Button = styled.button`
   background-color: white;
   cursor: pointer;
   font-weight: 500;
-
+  width:20%;
   &:hover {
     background-color: #f8f4f4;
   }
 `;
 
 const CheckOutButton = styled.button`
-  width: 100px;
+  width: 20%;
   padding: 10px;
   background-color: black;
   color: white;
@@ -211,17 +211,12 @@ const Product = () => {
       return alert("Login First");
     }
     setIsWinner(true)
-    if(!isEnd) {
-      if(!isWinner) {
-        try {
-          const newPrice = Math.floor((product.price / 100) * 110);
-          await userRequest.put("/products/bid/" +id, {
-            price: newPrice,
-            curWinner: user.username,
-          });
-        }catch {}
-      }
-    }
+    try {
+      await userRequest.put("/products/bid/" +id, {
+        price: Math.floor(( price/ 100) * 110),
+        curWinner: user.username,
+      });
+    }catch {}
     if(cart.products.length < 1) {
       dispatch(addProduct({ ...product }));
     } else {

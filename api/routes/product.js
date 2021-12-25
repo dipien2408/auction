@@ -83,7 +83,7 @@ router.get("/", async (req, res) => {
 });
 
 //bid
-router.put("/bid/:id", verifyTokenAndAuthorization, async (req, res) => {
+router.put("/bid/:id", async (req, res) => {
   try {
     const updatedProduct = await Product.findByIdAndUpdate(
       req.params.id,
