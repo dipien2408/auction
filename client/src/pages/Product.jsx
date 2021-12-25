@@ -92,7 +92,7 @@ const CheckOutButton = styled.button`
   margin-top: 10px;
 `;
 
-const KEY = process.env.REACT_APP_MAILCHIMP;
+const KEY = process.env.REACT_APP_STRIPE;
 
 const Product = () => {
 
